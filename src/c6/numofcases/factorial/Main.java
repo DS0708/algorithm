@@ -1,8 +1,8 @@
-package c6.numofcases;
+package c6.numofcases.factorial;
 
 //서로 다른 N개의 원소를 일렬로 줄 세운 경우의 수 구하기
 //n!
-public class Factorial {
+public class Main {
     public static void main(String[] args) {
         int n = 10;
         System.out.println(facto(n));

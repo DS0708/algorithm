@@ -1,10 +1,10 @@
-package c6.numofcases;
+package c6.numofcases.combination;
 
 import java.util.Stack;
 
 //서로 다른 N개의 원소 중에서 R개를 순서 없이 골라내기
 //nCr
-public class Combination {
+public class Main {
     public static void main(String[] args) {
         int n = 5;
         int r = 3;

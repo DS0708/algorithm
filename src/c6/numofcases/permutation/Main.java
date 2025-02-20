@@ -1,10 +1,10 @@
-package c6.numofcases;
+package c6.numofcases.permutation;
 
 import java.util.*;
 
 //서로 다른 n개의 원소 중에 순서 있이 r개를 뽑기
 //nPr
-public class Permutation {
+public class Main {
     public static void main(String[] args) {
         int n = 5;
         int r = 3;
