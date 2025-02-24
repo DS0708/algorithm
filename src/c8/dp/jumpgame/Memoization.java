@@ -3,7 +3,8 @@ package c8.dp.jumpgame;
 import java.io.*;
 import java.util.*;
 
-public class dp {
+//시간복잡도 O(cases * n^2)
+public class Memoization {
     static int[][] cache;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
