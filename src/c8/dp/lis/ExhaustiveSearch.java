@@ -3,37 +3,46 @@ package c8.dp.lis;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
+//시간복잡도 O(N^N * N^2)
 public class ExhaustiveSearch {
+    static int N;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int Cases = Integer.parseInt(br.readLine());
+        int cases = Integer.parseInt(br.readLine());
         //Logic
-        for(int c = 0; c < Cases; c++){
-            int n = Integer.parseInt(br.readLine());
-            List<Integer> list = new ArrayList<>();
-            String[] strArr = br.readLine().split(" ");
-            for(int i=0; i<n; i++) list.add(Integer.parseInt(strArr[i]));
-            System.out.println(lis(list));
+        for(int c=0; c<cases; c++) {
+            N = Integer.parseInt(br.readLine());
+            int[] arr = new int[N];
+            Arrays.fill(arr,-1);
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for(int i=0; i<N; i++) {
+                arr[i] = Integer.parseInt(st.nextToken());
+            }
+            //output
+            System.out.println(lis(arr));
         }
     }
-    public static int lis(List<Integer> list){
+    public static int lis(int[] arr){
         //base case
-        if(list.isEmpty()) return 0;
+        if(arr[0]==-1) return 0;
         //Logic
         int ret = 0;
-        for(int i=0; i<list.size(); i++){
-            List<Integer> tmpList = new ArrayList<>(list);
-            for(int j=i+1; j<list.size(); j++){
-                if(list.get(i) < list.get(j)) tmpList.add(list.get(j));
+        for(int i=0; i<arr.length; i++){
+            int[] temp = new int[N];
+            Arrays.fill(temp,-1);
+            int tempIdx = 0;
+            for(int j=i+1; j<arr.length; j++){
+                if(arr[i] < arr[j]) temp[tempIdx++] = arr[j];
             }
-            ret = Math.max(ret, 1+ lis(tmpList));
+            ret = Math.max(ret, 1 + lis(temp));
         }
         return ret;
     }
 }
+
 
 //문제 : https://algospot.com/judge/problem/read/LIS
 
