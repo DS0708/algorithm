@@ -4,8 +4,8 @@ package c8.dp.wildcard;
 import java.io.*;
 import java.util.*;
 
-//시간복잡도 = (Cases * WildStr.length() * Str.length() * Str.length())
-public class DP {
+//시간복잡도 = (Cases * WildStr.length() * Str.length())
+public class OptimizationDP {
     static String WildStr, Str;
     //Memoization으로 WildStr의 시작점과 Str의 시작점이 주어질 때 가능한지 불가능한 지를 캐싱
     static int[][] Cache;
@@ -36,9 +36,9 @@ public class DP {
         //Memoization
         if(Cache[w][s] != -1) return Cache[w][s];
         //Logic
-        while(w < WildStr.length() && s < Str.length() && (WildStr.charAt(w)=='?' || WildStr.charAt(w)==Str.charAt(s))){
-            w++;
-            s++;
+        //while -> if, w번째와 s번째 문자열이 같기 때문에 그 다음 문자열을 비교하는 부분문제로 변환
+        if(w < WildStr.length() && s < Str.length() && (WildStr.charAt(w)=='?' || WildStr.charAt(w)==Str.charAt(s))){
+            return Cache[w][s] = match(w+1,s+1);
         }
         /*
         while문을 빠져나오는 경우의 수
@@ -58,11 +58,9 @@ public class DP {
         }
         //4번 조건 처리
         if(WildStr.charAt(w)=='*'){
-            //*일때 Str이 0개인 경우도 매핑해야하기 때문에 Str.length()까지 (최대 100) 비교해야한다.
-            //따라서 캐시 사이즈도 101로 초기화 해야함
-            for(int skip = 0; s+skip <= Str.length(); skip++){
-                if(match(w+1, s+skip)==1) return Cache[w][s]=1;
-            }
+            //WildStr의 문자열이 *일떄, *이 아무것도 대응되지 않거나, 그 다음 문자와 대응되는 부분문제로 변환 가능
+            //이떄 *과 Str의 빈문자열이 비교되는 경우를 예외 처리해줘야 함
+            if(match(w+1, s)==1 || (s < Str.length() && match(w, s+1)==1)) return Cache[w][s]=1;
         }
         //1번 조건, 3번 조건의 WildStr의 남은 문자열이 하나라도 *이 아닐 때 처리
         return Cache[w][s]=0;
