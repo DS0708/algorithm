@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
+//시간 복잡도 O(N*S*N)
 public class DP {
     //최대 오차 제곱 합 = 1000^2 * 100 = 100,000,000
     static int INF = (int)1e8+1;
