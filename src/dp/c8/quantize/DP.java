@@ -1,4 +1,4 @@
-package c8dp.quantize;
+package dp.c8.quantize;
 
 import java.io.BufferedReader;
 import java.io.IOException;

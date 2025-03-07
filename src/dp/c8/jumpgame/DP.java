@@ -1,4 +1,4 @@
-package c8dp.jumpgame;
+package dp.c8.jumpgame;
 
 import java.io.BufferedReader;
 import java.io.IOException;

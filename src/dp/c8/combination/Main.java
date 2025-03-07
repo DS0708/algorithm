@@ -1,4 +1,4 @@
-package c8dp.combination;
+package dp.c8.combination;
 
 
 // nCr = n-1Cr + n-1Cr-1 -> n-1개일 때 n번째를 뽑거나 뽑지 않거나, 두 가지 경우로 나눌 수 있음

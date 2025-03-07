@@ -1,4 +1,4 @@
-package c8dp.trianglepath;
+package dp.c8.trianglepath;
 
 import java.io.BufferedReader;
 import java.io.IOException;

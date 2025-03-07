@@ -1,4 +1,4 @@
-package c8dp.wildcard;
+package dp.c8.wildcard;
 
 import java.io.*;
 import java.util.*;

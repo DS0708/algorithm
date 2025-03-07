@@ -1,4 +1,4 @@
-package c8dp.jlis;
+package dp.c8.jlis;
 
 import java.io.BufferedReader;
 import java.io.IOException;

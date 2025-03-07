@@ -1,4 +1,4 @@
-package c8dp.initarr;
+package dp.c8.initarr;
 
 
 import java.util.Arrays;

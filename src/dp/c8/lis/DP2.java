@@ -1,38 +1,42 @@
-package c8dp.lis;
+package dp.c8.lis;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class DPNoMaxLen2 {
+public class DP2 {
     static int N;
     static int[] Arr;
     static int[] Cache;
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int cases = Integer.parseInt(br.readLine());
         //Logic
         for(int c=0; c<cases; c++){
+            //init
             N = Integer.parseInt(br.readLine());
             Arr = new int[N];
-            Cache = new int[N+1];
+            Cache = new int[N];
             Arrays.fill(Cache, -1);
             StringTokenizer st = new StringTokenizer(br.readLine());
-            for (int i = 0; i < N; i++) Arr[i] = Integer.parseInt(st.nextToken());
-            System.out.println(lisDP2(-1)-1);
+            for(int i=0; i<N; i++) Arr[i] = Integer.parseInt(st.nextToken());
+            //Logic
+            int maxLen = 0;
+            for(int i=0; i<N; i++) maxLen = Math.max(maxLen, lisDP(i));
+            System.out.println(maxLen);
         }
     }
-    public static int lisDP2(int start){
+    public static int lisDP(int start){
         //Memoization
-        int cacheIdx = start+1;
-        if(Cache[cacheIdx] != -1) return Cache[cacheIdx];
+        if(Cache[start] != -1) return Cache[start];
         //Logic
-        Cache[cacheIdx] = 1;
+        Cache[start] = 1;
         for(int next = start+1; next<N; next++){
-            if(start==-1 || Arr[start] < Arr[next]) Cache[cacheIdx] = Math.max(Cache[cacheIdx], 1 + lisDP2(next));
+            if(Arr[start] < Arr[next]) Cache[start] = Math.max(Cache[start], 1 + lisDP(next));
         }
-        return Cache[cacheIdx];
+        return Cache[start];
     }
 }
 
