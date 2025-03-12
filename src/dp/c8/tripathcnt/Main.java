@@ -26,8 +26,6 @@ public class Main {
                 StringTokenizer st = new StringTokenizer(br.readLine());
                 for(int j=0; j<=i; j++) Triangle[i][j] = Integer.parseInt(st.nextToken());
             }
-            //최대 경로인 합 구하기
-            path(0,0);
             //최대 경로의 개수 출력하기
             System.out.println(countPath(0,0));
         }
@@ -38,9 +36,9 @@ public class Main {
         //Memoization
         if(CountCache[y][x]!=-1) return CountCache[y][x];
         //logic
-        if(PathCache[y+1][x] == PathCache[y+1][x+1]){
+        if(path(y+1,x) == path(y+1,x+1)){
             CountCache[y][x] = countPath(y+1, x) + countPath(y+1, x+1);
-        }else if (PathCache[y+1][x] > PathCache[y+1][x+1]){
+        }else if (path(y+1,x) > path(y+1,x+1)){
             CountCache[y][x] = countPath(y+1, x);
         }else{
             CountCache[y][x] = countPath(y+1, x+1);
