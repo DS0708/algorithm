@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
+//시간복잡도 O(N*Capacity)
 public class Main {
     static int N,Capacity;
     static String[] Items;
