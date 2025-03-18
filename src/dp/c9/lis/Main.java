@@ -59,9 +59,6 @@ public class Main {
         return Cache[start+1] = ret;
     }
 }
-
-//문제 : https://algospot.com/judge/problem/read/LIS
-
 //입력
 /*
 3
@@ -76,6 +73,9 @@ public class Main {
 //출력
 /*
 4
+1 2 3 4
 4
+5 6 7 8
 4
+5 6 7 8
  */
