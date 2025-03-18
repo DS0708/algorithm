@@ -1,4 +1,4 @@
-package tree.c22.insertion;
+package tree.c22c23.insertion;
 
 import java.io.*;
 import java.util.*;

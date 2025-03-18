@@ -1,4 +1,4 @@
-package tree.c22.insertion;
+package tree.c22c23.insertion;
 
 public class InsertionSort {
     public static void main(String[] args) {
