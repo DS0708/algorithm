@@ -1,4 +1,4 @@
-package c6.bruteforce.boardcover;
+package bruteforce.bruteforce.boardcover;
 
 import java.io.BufferedReader;
 import java.io.IOException;

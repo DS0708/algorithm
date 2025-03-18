@@ -1,4 +1,4 @@
-package c6.numofcases.combination;
+package bruteforce.numofcases.combination;
 
 import java.util.Stack;
 

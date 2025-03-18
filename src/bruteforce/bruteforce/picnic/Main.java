@@ -1,4 +1,4 @@
-package c6.bruteforce.picnic;
+package bruteforce.bruteforce.picnic;
 
 import java.io.*;
 import java.util.StringTokenizer;

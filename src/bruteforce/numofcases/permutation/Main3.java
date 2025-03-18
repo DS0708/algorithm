@@ -1,4 +1,4 @@
-package c6.numofcases.permutation;
+package bruteforce.numofcases.permutation;
 
 import java.util.Stack;
 

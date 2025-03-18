@@ -1,4 +1,4 @@
-package c6.bruteforce.boggle;
+package bruteforce.bruteforce.boggle;
 
 import java.io.*;
 import java.util.*;

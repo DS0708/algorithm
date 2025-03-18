@@ -1,4 +1,4 @@
-package c6.optimization.tsp1;
+package bruteforce.optimization.tsp1;
 
 import java.io.*;
 import java.util.*;

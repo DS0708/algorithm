@@ -1,72 +1,66 @@
-package c6.optimization.clocksync;
+package bruteforce.optimization.clocksync;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
-public class Main2 {
+public class Main {
     static final int clockNum = 16;
     static final int switchNum = 10;
     static List<Integer>[] switchs;
-    static int minClick;
-    static final int INF = Integer.MAX_VALUE;
+    static int[] clocks;
+    static int curMin;
     public static void main(String[] args) throws IOException {
-        //switch 초기화
         initSwitchs();
         //input
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         int Cases = Integer.parseInt(st.nextToken());
         //logic
-        for(int c=0; c<Cases; c++) {
+        for(int c = 0; c < Cases; c++) {
+            //case당 input
             st = new StringTokenizer(br.readLine());
-            int[] clocks = new int[clockNum];
-            for(int i=0; i<clockNum; i++) {
+            clocks = new int[16];
+            for(int i=0; i<clockNum; i++){
                 clocks[i] = Integer.parseInt(st.nextToken());
             }
-            minClick = INF;
-            //Logic
-            solve(clocks, 0,0);
-            //output
-            if(minClick == INF) System.out.println(-1);
-            else System.out.println(minClick);
+            //logic
+            curMin = Integer.MAX_VALUE; //가지치기를 위한
+            int answer = findMinPressSwitch(0, 0);
+            if(answer == Integer.MAX_VALUE) System.out.println(-1);
+            else System.out.println(answer);
         }
     }
-    public static void solve(int[] clocks, int curSwitch, int curClick) {
+    public static int findMinPressSwitch(int c, int pressSwitch){
         //가지치기
-        if(curClick >= minClick) return;
-        //base case
-        if(curSwitch == switchNum){
-            if(complete(clocks)){
-                minClick = Math.min(curClick, minClick);
+        if(pressSwitch >= curMin) return curMin;
+        //base case : 모든 스위치의 경우의 수를 다 확인했을 때
+        if(c==switchNum){
+            return allClear(clocks) ? pressSwitch : Integer.MAX_VALUE;
+        }else{
+            for(int i=0; i<4; i++){
+                curMin = Math.min(curMin, findMinPressSwitch(c+1, pressSwitch+i));
+                push(c);
             }
-            return;
-        }
-        //Logic
-        for(int i=0; i<4; i++){
-            solve(clocks, curSwitch+1, curClick + i);
-            clickSwitch(clocks,curSwitch);
+            return curMin;
         }
     }
-    public static void clickSwitch(int[] clocks, int curSwitch) {
-        for(int swt : switchs[curSwitch]){
-            clocks[swt] += 3;
-            if(clocks[swt]==15) clocks[swt] = 3;
+    public static void push(int sn){
+        for(int  clock : switchs[sn]){
+            clocks[clock] += 3;
+            if(clocks[clock]==15) clocks[clock] = 3;
         }
     }
-    public static boolean complete(int[] clocks) {
-        boolean ok = true;
+    public static boolean allClear(int[] clocks){
+        boolean clear = true;
         for(int i=0; i<clockNum; i++){
             if(clocks[i]!=12){
-                ok = false;
+                clear = false;
                 break;
             }
         }
-        return ok;
+        return clear;
     }
+
     public static void initSwitchs(){
         switchs = new List[switchNum];
         switchs[0] = new ArrayList<>();
@@ -92,8 +86,17 @@ public class Main2 {
     }
 }
 
+//문제: https://algospot.com/judge/problem/read/CLOCKSYNC
+
+//입력
 /*
 2
 12 6 6 6 6 6 12 12 12 12 12 12 12 12 12 12
 12 9 3 12 6 6 9 3 12 9 12 9 12 12 6 6
+ */
+
+//출력
+/*
+2
+9
  */
