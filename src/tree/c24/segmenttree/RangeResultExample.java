@@ -55,12 +55,12 @@ public class RangeResultExample {
         }
         // 외부에서 호출할 query 메서드
         public RangeResult query(int left, int right) {
-            return query(left, right,1, 0, size-1)
+            return query(left, right,1, 0, size-1);
         }
 
         private RangeResult query(int left, int right, int node, int nodeLeft, int nodeRight) {
             // 구간이 겹치지 않는 경우
-            if (right < nodeLeft || nodeRight < left) {
+            if (left > nodeRight || right < nodeLeft) {
                 return new RangeResult();
             }
             // 구간이 완전히 포함되는 경우
@@ -69,8 +69,8 @@ public class RangeResultExample {
             }
             // 구간이 걸치는 경우
             int mid = (nodeLeft + nodeRight) / 2;
-            RangeResult leftResult = query(node * 2, nodeLeft, mid, left, right);
-            RangeResult rightResult = query(node * 2 + 1, mid + 1, nodeRight, left, right);
+            RangeResult leftResult = query(left, right, node*2, nodeLeft, mid);
+            RangeResult rightResult = query(left, right, node*2+1, mid+1, nodeRight);
 
             return merge(leftResult, rightResult);
         }
