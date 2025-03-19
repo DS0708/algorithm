@@ -1,4 +1,4 @@
-package graph.c28.wordchain;
+package etc.useful;
 
 import java.util.*;
 

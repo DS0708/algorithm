@@ -1,4 +1,4 @@
-package tree.c22c23.insertion;
+package etc.useful;
 
 public class InsertionSort {
     public static void main(String[] args) {

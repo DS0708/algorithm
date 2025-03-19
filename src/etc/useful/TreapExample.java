@@ -1,4 +1,4 @@
-package tree.c22c23.treap;
+package etc.useful;
 
 import java.util.AbstractMap;
 import java.util.Map;
